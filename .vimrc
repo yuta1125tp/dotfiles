@@ -40,3 +40,12 @@ set colorcolumn=80
 " force to show at least 5 lines around currenct position 
 set scrolloff=5 
 
+" yank to Windows clipboard
+if system('uname -r') =~ "Microsoft"
+    augroup Yank
+        autocmd!
+        autocmd TextYankPost * :call system('clip.exe ',@")
+    augroup END
+endif
+
+set report=0
