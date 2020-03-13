@@ -47,5 +47,9 @@ if system('uname -r') =~ "Microsoft"
         autocmd TextYankPost * :call system('clip.exe ',@")
     augroup END
 endif
+if has("win64") || has("win32") || has("win16")
+    set clipboard=unnamed,autoselect
+endif
+
 
 set report=0
