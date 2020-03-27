@@ -41,14 +41,15 @@ set colorcolumn=80
 set scrolloff=5 
 
 " yank to Windows clipboard
-if system('uname -r') =~ "Microsoft"
+if has("win64") || has("win32") || has("win16")
+    " windows
+    set clipboard=unnamed,autoselect
+elseif system('uname -r') =~ "Microsoft"
+    " wsl
     augroup Yank
         autocmd!
         autocmd TextYankPost * :call system('clip.exe ',@")
     augroup END
-endif
-if has("win64") || has("win32") || has("win16")
-    set clipboard=unnamed,autoselect
 endif
 
 
